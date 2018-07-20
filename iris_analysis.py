@@ -3,19 +3,19 @@
 
 # # Importing the iris Dataset.
 
-# In[9]:
+# In[2]:
 
 
 # Loading iris dataset from scikit-learn.
 
 
-# In[10]:
+# In[3]:
 
 
 from sklearn.datasets import load_iris
 
 
-# In[11]:
+# In[5]:
 
 
 # saving 'bunch' object containing iris dataset and its attributes.
@@ -31,7 +31,7 @@ print(iris.data)
 iris.data.shape
 
 
-# In[12]:
+# In[7]:
 
 
 # printing name of the four features.
@@ -45,14 +45,14 @@ print(iris.feature_names)
 print(iris.target)
 
 
-# In[13]:
+# In[9]:
 
 
 # printing the encoding scheme for species. (0 = setosa, 1 = versicolor, 2 = virginica)
 print(iris.target_names)
 
 
-# In[14]:
+# In[10]:
 
 
 # checking the types of features and response.
@@ -60,14 +60,14 @@ type('iris.data')
 type('iris.target')
 
 
-# In[15]:
+# In[11]:
 
 
 # checking the shape of the features. (first parameter is rows/observations, second parameter is columns/number of features)
 iris.data.shape
 
 
-# In[16]:
+# In[12]:
 
 
 # checking the shape of response. (one parameter matching the nuber of observations)
@@ -80,6 +80,7 @@ iris.target.shape
 
 
 # extracting the values of features and creating a list called featuresALL.
+featuresALL=[]
 features = iris.data[:, [0,1,2,3]]
 features.shape
 
@@ -103,7 +104,7 @@ for observation in features:
 print(featuresALL)
 
 
-# In[22]:
+# In[20]:
 
 
 # plotting the Scatter Plot
@@ -119,7 +120,7 @@ plt.show()
 # ### Scatter Plot with iris Dataset. (Relationship between Sepal Length and Sepal Width) Method #1
 # 
 
-# In[23]:
+# In[21]:
 
 
 # finding relationship between Sepal length and Sepal width.
@@ -145,7 +146,7 @@ plt.show()
 
 # ### Scatter Plot with Iris Dataset (Relationship between Petal length and Petal width) #Method 1
 
-# In[24]:
+# In[22]:
 
 
 # finding relationship between Sepal length and Sepal width.
@@ -171,7 +172,7 @@ plt.show()
 
 # # K - Nearest neighbours (KNN) Algorithm
 
-# In[26]:
+# In[23]:
 
 
 import pandas as pd
@@ -182,7 +183,7 @@ ir['CLASS'] = iris.target
 ir.head() #returns the top 5 rows.
 
 
-# In[27]:
+# In[24]:
 
 
 from sklearn.neighbors import NearestNeighbors
@@ -192,13 +193,13 @@ nn = NearestNeighbors(5) #The arguement specify to return the fast 5 among the
 nn.fit(iris.data) #fitting iris dataset to nearest neighbors algorithm
 
 
-# In[28]:
+# In[25]:
 
 
 ir.describe() #showing the fitted data
 
 
-# In[29]:
+# In[26]:
 
 
 # creating a test data
@@ -208,13 +209,13 @@ test1 = test.reshape(1,-1)
 test1.shape
 
 
-# In[30]:
+# In[27]:
 
 
 nn.kneighbors(test1,5)
 
 
-# In[31]:
+# In[28]:
 
 
 ir.iloc[[98, 93, 57, 60, 79]] # displaying specific rows using iloc() 
@@ -222,7 +223,7 @@ ir.iloc[[98, 93, 57, 60, 79]] # displaying specific rows using iloc()
 
 # ### KNeighborsClassifier Algorithm
 
-# In[38]:
+# In[29]:
 
 
 import numpy as np
@@ -273,10 +274,133 @@ plt.show()
 
 # ### KNN Classifier Algorithm - Understanding its working
 
-# In[39]:
+# In[30]:
 
 
 from sklearn.neighbors import KNeighborsClassifier
 knn = KNeighborsClassifier(n_neighbors=1)
 print(knn)
 
+
+# In[31]:
+
+
+import numpy as np
+X1 = np.asarray(featuresALL)
+X1 = X1.reshape(-1,1)
+
+
+# In[32]:
+
+
+X1.shape
+
+
+# In[33]:
+
+
+y = iris.target
+y.shape
+
+
+# In[34]:
+
+
+knn.fit(X1,y)
+
+
+# In[37]:
+
+
+import numpy as np
+print(knn.predict([[6.4]]))
+
+
+# In[38]:
+
+
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(X1,y)
+
+
+# In[39]:
+
+
+print(knn.predict([[3.4]]))
+
+
+# In[40]:
+
+
+print(knn.predict(np.column_stack([[1.,6.1,3.2,4.2]])))
+
+
+# # Linear Regression
+
+# In[41]:
+
+
+from sklearn.linear_model import LinearRegression
+model = LinearRegression(fit_intercept=True)
+model
+
+
+# In[42]:
+
+
+import numpy as np
+XX = np.asarray(featuresALL)
+X2 = XX[:, np.newaxis]
+X2
+X2.shape
+
+
+# In[43]:
+
+
+y2 = iris.target
+y2.shape
+
+
+# In[44]:
+
+
+model.fit(X2, y2)
+
+
+# In[45]:
+
+
+model.coef_
+
+
+# In[46]:
+
+
+model.intercept_
+
+
+# In[48]:
+
+
+Xfit = np.random.randint(8,size=(150))
+Xfit.astype(float)
+Xfit = Xfit[:, np.newaxis]
+Xfit.shape
+
+
+# In[49]:
+
+
+yfit = (model.predict(Xfit))
+yfit.shape
+
+
+# In[50]:
+
+
+plt.scatter(X2, y2)
+plt.plot(Xfit, yfit)
+
+
+# ### Regression
