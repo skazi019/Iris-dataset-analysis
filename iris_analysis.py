@@ -3,13 +3,13 @@
 
 # # Importing the iris Dataset.
 
-# In[2]:
+# In[3]:
 
 
 # Loading iris dataset from scikit-learn.
 
 
-# In[3]:
+# In[4]:
 
 
 from sklearn.datasets import load_iris
@@ -76,7 +76,7 @@ iris.target.shape
 
 # # Scatter Plot with iris Dataset.
 
-# In[17]:
+# In[13]:
 
 
 # extracting the values of features and creating a list called featuresALL.
@@ -85,7 +85,7 @@ features = iris.data[:, [0,1,2,3]]
 features.shape
 
 
-# In[18]:
+# In[14]:
 
 
 # extracting the values for target.
@@ -94,7 +94,7 @@ targets.reshape(targets.shape[0],-1)
 targets.shape
 
 
-# In[19]:
+# In[15]:
 
 
 # every observation gets appended into the list once it's read. 'For' loop is used for iteration process.
@@ -104,7 +104,7 @@ for observation in features:
 print(featuresALL)
 
 
-# In[20]:
+# In[16]:
 
 
 # plotting the Scatter Plot
@@ -120,7 +120,7 @@ plt.show()
 # ### Scatter Plot with iris Dataset. (Relationship between Sepal Length and Sepal Width) Method #1
 # 
 
-# In[21]:
+# In[17]:
 
 
 # finding relationship between Sepal length and Sepal width.
@@ -146,7 +146,7 @@ plt.show()
 
 # ### Scatter Plot with Iris Dataset (Relationship between Petal length and Petal width) #Method 1
 
-# In[22]:
+# In[18]:
 
 
 # finding relationship between Sepal length and Sepal width.
@@ -172,7 +172,7 @@ plt.show()
 
 # # K - Nearest neighbours (KNN) Algorithm
 
-# In[23]:
+# In[19]:
 
 
 import pandas as pd
@@ -183,7 +183,7 @@ ir['CLASS'] = iris.target
 ir.head() #returns the top 5 rows.
 
 
-# In[24]:
+# In[20]:
 
 
 from sklearn.neighbors import NearestNeighbors
@@ -193,13 +193,13 @@ nn = NearestNeighbors(5) #The arguement specify to return the fast 5 among the
 nn.fit(iris.data) #fitting iris dataset to nearest neighbors algorithm
 
 
-# In[25]:
+# In[21]:
 
 
 ir.describe() #showing the fitted data
 
 
-# In[26]:
+# In[22]:
 
 
 # creating a test data
@@ -209,13 +209,13 @@ test1 = test.reshape(1,-1)
 test1.shape
 
 
-# In[27]:
+# In[23]:
 
 
 nn.kneighbors(test1,5)
 
 
-# In[28]:
+# In[24]:
 
 
 ir.iloc[[98, 93, 57, 60, 79]] # displaying specific rows using iloc() 
@@ -223,7 +223,7 @@ ir.iloc[[98, 93, 57, 60, 79]] # displaying specific rows using iloc()
 
 # ### KNeighborsClassifier Algorithm
 
-# In[29]:
+# In[25]:
 
 
 import numpy as np
@@ -274,7 +274,7 @@ plt.show()
 
 # ### KNN Classifier Algorithm - Understanding its working
 
-# In[30]:
+# In[26]:
 
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -282,7 +282,7 @@ knn = KNeighborsClassifier(n_neighbors=1)
 print(knn)
 
 
-# In[31]:
+# In[27]:
 
 
 import numpy as np
@@ -290,46 +290,46 @@ X1 = np.asarray(featuresALL)
 X1 = X1.reshape(-1,1)
 
 
-# In[32]:
+# In[28]:
 
 
 X1.shape
 
 
-# In[33]:
+# In[29]:
 
 
 y = iris.target
 y.shape
 
 
-# In[34]:
+# In[30]:
 
 
 knn.fit(X1,y)
 
 
-# In[37]:
+# In[31]:
 
 
 import numpy as np
 print(knn.predict([[6.4]]))
 
 
-# In[38]:
+# In[32]:
 
 
 knn = KNeighborsClassifier(n_neighbors=5)
 knn.fit(X1,y)
 
 
-# In[39]:
+# In[33]:
 
 
 print(knn.predict([[3.4]]))
 
 
-# In[40]:
+# In[34]:
 
 
 print(knn.predict(np.column_stack([[1.,6.1,3.2,4.2]])))
@@ -337,7 +337,7 @@ print(knn.predict(np.column_stack([[1.,6.1,3.2,4.2]])))
 
 # # Linear Regression
 
-# In[41]:
+# In[35]:
 
 
 from sklearn.linear_model import LinearRegression
@@ -345,7 +345,7 @@ model = LinearRegression(fit_intercept=True)
 model
 
 
-# In[42]:
+# In[36]:
 
 
 import numpy as np
@@ -355,32 +355,32 @@ X2
 X2.shape
 
 
-# In[43]:
+# In[37]:
 
 
 y2 = iris.target
 y2.shape
 
 
-# In[44]:
+# In[38]:
 
 
 model.fit(X2, y2)
 
 
-# In[45]:
+# In[39]:
 
 
 model.coef_
 
 
-# In[46]:
+# In[40]:
 
 
 model.intercept_
 
 
-# In[48]:
+# In[41]:
 
 
 Xfit = np.random.randint(8,size=(150))
@@ -389,14 +389,14 @@ Xfit = Xfit[:, np.newaxis]
 Xfit.shape
 
 
-# In[49]:
+# In[42]:
 
 
 yfit = (model.predict(Xfit))
 yfit.shape
 
 
-# In[50]:
+# In[43]:
 
 
 plt.scatter(X2, y2)
@@ -404,3 +404,109 @@ plt.plot(Xfit, yfit)
 
 
 # ### Regression
+
+# In[44]:
+
+
+from sklearn.preprocessing import PolynomialFeatures
+poly =PolynomialFeatures(150, include_bias=False)
+poly.fit_transform(X2)
+
+
+# In[45]:
+
+
+from sklearn.pipeline import make_pipeline
+poly_model = make_pipeline(PolynomialFeatures(3), LinearRegression())
+poly_model.fit(X2, y2)
+yfit = poly_model.predict(Xfit)
+
+
+# In[46]:
+
+
+# this linear model, through the use of 3rd order polynomial basis function
+# can provide a fit to this non-linear data
+plt.scatter(X2, y2)
+plt.plot(Xfit, yfit)
+
+
+# ### How length and width vary according to the species
+
+# In[47]:
+
+
+import pandas as pd
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+names = ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm', 'Species']
+iris1 = pd.read_csv(url, names=names)
+print(iris1.head())
+
+
+# ### Scatter Plot with Iris Dataset (Relationship between Sepal length and Sepal Width)
+
+# In[48]:
+
+
+iris1.plot(kind ='scatter', x='SepalLengthCm', y='SepalWidthCm')
+plt.show()
+
+
+# ### Scatter Plot with Iris Dataset (Relationship between Petal length and Petal width)
+
+# In[49]:
+
+
+iris1.plot(kind='scatter', x='PetalLengthCm', y='PetalWidthCm')
+plt.show()
+
+
+# In[50]:
+
+
+iris1.ix[:, iris1.columns].hist()
+plt.figure(figsize=(15,10))
+plt.show()
+
+
+# ### Violin Plot
+
+# In[51]:
+
+
+import seaborn as sns
+plt.figure(figsize=(15,10))
+plt.subplot(2,2,1)
+sns.violinplot(x='Species', y='PetalLengthCm',data=iris1)
+plt.subplot(2,2,2)
+sns.violinplot(x='Species', y='PetalWidthCm',data=iris1)
+plt.subplot(2,2,3)
+sns.violinplot(x='Species', y='SepalLengthCm',data=iris1)
+plt.subplot(2,2,4)
+sns.violinplot(x='Species', y='SepalWidthCm',data=iris1)
+
+
+# ### IRIS Correlation Matrix
+
+# In[52]:
+
+
+corr = iris1.corr()
+corr
+
+
+# In[55]:
+
+
+# importing correlation matrix to see parameters which best correlate each other.
+# Accroding to the correlation matrix results PetalLengthCm and PetalWidthCm
+# have a positive correlation which is proved by the scatter plot discussed above
+
+import seaborn as sns
+import pandas as pd
+corr = iris1.corr()
+plt.figure(figsize=(10,8))
+sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values,
+           cmap='viridis', annot=True)
+plt.show()
+
