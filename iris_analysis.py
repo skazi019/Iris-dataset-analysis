@@ -3,19 +3,19 @@
 
 # # Importing the iris Dataset.
 
-# In[3]:
+# In[1]:
 
 
 # Loading iris dataset from scikit-learn.
 
 
-# In[4]:
+# In[2]:
 
 
 from sklearn.datasets import load_iris
 
 
-# In[5]:
+# In[3]:
 
 
 # saving 'bunch' object containing iris dataset and its attributes.
@@ -23,7 +23,7 @@ iris = load_iris()
 type(iris)
 
 
-# In[6]:
+# In[4]:
 
 
 # printing iris dataset. (each row represents a flower and each column represents the length and the width)
@@ -31,28 +31,28 @@ print(iris.data)
 iris.data.shape
 
 
-# In[7]:
+# In[5]:
 
 
 # printing name of the four features.
 print(iris.feature_names)
 
 
-# In[8]:
+# In[6]:
 
 
 # printing the integers representing the species of each observation.
 print(iris.target)
 
 
-# In[9]:
+# In[7]:
 
 
 # printing the encoding scheme for species. (0 = setosa, 1 = versicolor, 2 = virginica)
 print(iris.target_names)
 
 
-# In[10]:
+# In[8]:
 
 
 # checking the types of features and response.
@@ -60,14 +60,14 @@ type('iris.data')
 type('iris.target')
 
 
-# In[11]:
+# In[9]:
 
 
 # checking the shape of the features. (first parameter is rows/observations, second parameter is columns/number of features)
 iris.data.shape
 
 
-# In[12]:
+# In[10]:
 
 
 # checking the shape of response. (one parameter matching the nuber of observations)
@@ -76,7 +76,7 @@ iris.target.shape
 
 # # Scatter Plot with iris Dataset.
 
-# In[13]:
+# In[11]:
 
 
 # extracting the values of features and creating a list called featuresALL.
@@ -85,7 +85,7 @@ features = iris.data[:, [0,1,2,3]]
 features.shape
 
 
-# In[14]:
+# In[12]:
 
 
 # extracting the values for target.
@@ -94,7 +94,7 @@ targets.reshape(targets.shape[0],-1)
 targets.shape
 
 
-# In[15]:
+# In[13]:
 
 
 # every observation gets appended into the list once it's read. 'For' loop is used for iteration process.
@@ -104,7 +104,7 @@ for observation in features:
 print(featuresALL)
 
 
-# In[16]:
+# In[14]:
 
 
 # plotting the Scatter Plot
@@ -120,7 +120,7 @@ plt.show()
 # ### Scatter Plot with iris Dataset. (Relationship between Sepal Length and Sepal Width) Method #1
 # 
 
-# In[17]:
+# In[15]:
 
 
 # finding relationship between Sepal length and Sepal width.
@@ -146,7 +146,7 @@ plt.show()
 
 # ### Scatter Plot with Iris Dataset (Relationship between Petal length and Petal width) #Method 1
 
-# In[18]:
+# In[16]:
 
 
 # finding relationship between Sepal length and Sepal width.
@@ -172,7 +172,7 @@ plt.show()
 
 # # K - Nearest neighbours (KNN) Algorithm
 
-# In[19]:
+# In[17]:
 
 
 import pandas as pd
@@ -183,7 +183,7 @@ ir['CLASS'] = iris.target
 ir.head() #returns the top 5 rows.
 
 
-# In[20]:
+# In[18]:
 
 
 from sklearn.neighbors import NearestNeighbors
@@ -193,13 +193,13 @@ nn = NearestNeighbors(5) #The arguement specify to return the fast 5 among the
 nn.fit(iris.data) #fitting iris dataset to nearest neighbors algorithm
 
 
-# In[21]:
+# In[19]:
 
 
 ir.describe() #showing the fitted data
 
 
-# In[22]:
+# In[20]:
 
 
 # creating a test data
@@ -209,13 +209,13 @@ test1 = test.reshape(1,-1)
 test1.shape
 
 
-# In[23]:
+# In[21]:
 
 
 nn.kneighbors(test1,5)
 
 
-# In[24]:
+# In[22]:
 
 
 ir.iloc[[98, 93, 57, 60, 79]] # displaying specific rows using iloc() 
@@ -223,7 +223,7 @@ ir.iloc[[98, 93, 57, 60, 79]] # displaying specific rows using iloc()
 
 # ### KNeighborsClassifier Algorithm
 
-# In[25]:
+# In[23]:
 
 
 import numpy as np
@@ -274,7 +274,7 @@ plt.show()
 
 # ### KNN Classifier Algorithm - Understanding its working
 
-# In[26]:
+# In[24]:
 
 
 from sklearn.neighbors import KNeighborsClassifier
@@ -282,7 +282,7 @@ knn = KNeighborsClassifier(n_neighbors=1)
 print(knn)
 
 
-# In[27]:
+# In[25]:
 
 
 import numpy as np
@@ -290,46 +290,46 @@ X1 = np.asarray(featuresALL)
 X1 = X1.reshape(-1,1)
 
 
-# In[28]:
+# In[26]:
 
 
 X1.shape
 
 
-# In[29]:
+# In[27]:
 
 
 y = iris.target
 y.shape
 
 
-# In[30]:
+# In[28]:
 
 
 knn.fit(X1,y)
 
 
-# In[31]:
+# In[29]:
 
 
 import numpy as np
 print(knn.predict([[6.4]]))
 
 
-# In[32]:
+# In[30]:
 
 
 knn = KNeighborsClassifier(n_neighbors=5)
 knn.fit(X1,y)
 
 
-# In[33]:
+# In[31]:
 
 
 print(knn.predict([[3.4]]))
 
 
-# In[34]:
+# In[32]:
 
 
 print(knn.predict(np.column_stack([[1.,6.1,3.2,4.2]])))
@@ -337,7 +337,7 @@ print(knn.predict(np.column_stack([[1.,6.1,3.2,4.2]])))
 
 # # Linear Regression
 
-# In[35]:
+# In[33]:
 
 
 from sklearn.linear_model import LinearRegression
@@ -345,7 +345,7 @@ model = LinearRegression(fit_intercept=True)
 model
 
 
-# In[36]:
+# In[34]:
 
 
 import numpy as np
@@ -355,32 +355,32 @@ X2
 X2.shape
 
 
-# In[37]:
+# In[35]:
 
 
 y2 = iris.target
 y2.shape
 
 
-# In[38]:
+# In[36]:
 
 
 model.fit(X2, y2)
 
 
-# In[39]:
+# In[37]:
 
 
 model.coef_
 
 
-# In[40]:
+# In[38]:
 
 
 model.intercept_
 
 
-# In[41]:
+# In[39]:
 
 
 Xfit = np.random.randint(8,size=(150))
@@ -389,14 +389,14 @@ Xfit = Xfit[:, np.newaxis]
 Xfit.shape
 
 
-# In[42]:
+# In[40]:
 
 
 yfit = (model.predict(Xfit))
 yfit.shape
 
 
-# In[43]:
+# In[41]:
 
 
 plt.scatter(X2, y2)
@@ -405,7 +405,7 @@ plt.plot(Xfit, yfit)
 
 # ### Regression
 
-# In[44]:
+# In[42]:
 
 
 from sklearn.preprocessing import PolynomialFeatures
@@ -413,7 +413,7 @@ poly =PolynomialFeatures(150, include_bias=False)
 poly.fit_transform(X2)
 
 
-# In[45]:
+# In[43]:
 
 
 from sklearn.pipeline import make_pipeline
@@ -422,7 +422,7 @@ poly_model.fit(X2, y2)
 yfit = poly_model.predict(Xfit)
 
 
-# In[46]:
+# In[44]:
 
 
 # this linear model, through the use of 3rd order polynomial basis function
@@ -433,7 +433,7 @@ plt.plot(Xfit, yfit)
 
 # ### How length and width vary according to the species
 
-# In[47]:
+# In[45]:
 
 
 import pandas as pd
@@ -445,7 +445,7 @@ print(iris1.head())
 
 # ### Scatter Plot with Iris Dataset (Relationship between Sepal length and Sepal Width)
 
-# In[48]:
+# In[46]:
 
 
 iris1.plot(kind ='scatter', x='SepalLengthCm', y='SepalWidthCm')
@@ -454,14 +454,14 @@ plt.show()
 
 # ### Scatter Plot with Iris Dataset (Relationship between Petal length and Petal width)
 
-# In[49]:
+# In[47]:
 
 
 iris1.plot(kind='scatter', x='PetalLengthCm', y='PetalWidthCm')
 plt.show()
 
 
-# In[50]:
+# In[48]:
 
 
 iris1.ix[:, iris1.columns].hist()
@@ -471,7 +471,7 @@ plt.show()
 
 # ### Violin Plot
 
-# In[51]:
+# In[49]:
 
 
 import seaborn as sns
@@ -488,14 +488,14 @@ sns.violinplot(x='Species', y='SepalWidthCm',data=iris1)
 
 # ### IRIS Correlation Matrix
 
-# In[52]:
+# In[50]:
 
 
 corr = iris1.corr()
 corr
 
 
-# In[55]:
+# In[51]:
 
 
 # importing correlation matrix to see parameters which best correlate each other.
@@ -509,4 +509,190 @@ plt.figure(figsize=(10,8))
 sns.heatmap(corr, xticklabels=corr.columns.values, yticklabels=corr.columns.values,
            cmap='viridis', annot=True)
 plt.show()
+
+
+# ### Supervised learning example: Iris classification
+
+# In[52]:
+
+
+X3 = iris1.iloc[:,0:5]
+Y3 = iris1['Species']
+
+
+# In[53]:
+
+
+# We want to evaluate model on data it has not seen before, so we will split
+# the data into training set and testing set.
+
+
+# In[54]:
+
+
+from sklearn.cross_validation import train_test_split
+X3_train, X3_test, y_train, y_test = train_test_split(X3, Y3, test_size=0.4,
+                                                     random_state=0)
+print(" X3_train",X3_train)
+print("X3_test",X3_test)
+print("y_train",y_train)
+print("y_test",y_test)
+
+
+# #### Predicting the labels
+
+# In[ ]:
+
+
+#training and testing model
+from sklearn.naive_bayes import GaussianNB
+model = GaussianNB()
+model = model.fit(X3_train, y_train)
+y_model = model.predict(X3_test)
+y_model
+# Error in executing. Use a proper csv file of the iris dataset.
+
+
+# In[ ]:
+
+
+from sklearn.metrics import accuracy_score
+accuracy_score(y_test, y_model)
+# Because of above error this also does not work.
+
+
+# # K Means Clustering in SciKit Learn with Iris dataset
+
+# In[57]:
+
+
+from sklearn.cluster import KMeans
+km = KMeans(n_clusters=3, max_iter=1000)
+X1.shape
+
+
+# In[58]:
+
+
+km.fit(iris.data)
+
+
+# In[59]:
+
+
+km.cluster_centers_
+
+
+# In[60]:
+
+
+km.labels_
+
+
+# In[61]:
+
+
+iris1['K Mean predicted label'] = km.labels_
+iris1
+
+
+# ### Pivot the data with Iris Dataset
+
+# In[67]:
+
+
+import pandas as pd
+iris1 = pd.read_csv('../input/Iris.csv')
+iris.head()
+
+
+# In[73]:
+
+
+import pandas as pd
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
+names = ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm', 'Species']
+iris1 = pd.read_csv(url, names=names)
+iris1.insert(0, 'id', range(1, 1 + len(iris1)))
+print(iris1.head(10))
+
+
+# In[74]:
+
+
+pd.pivot_table(iris1, index=['id'])
+
+
+# In[75]:
+
+
+# we can use multiple indexes
+pd.pivot_table(iris1, index=['id', 'Species'])
+
+
+# In[76]:
+
+
+pd.pivot_table(iris1, index=['Species','id'])
+
+
+# In[77]:
+
+
+pd.pivot_table(iris1, index=['Species'], values=['SepalLengthCm','SepalWidthCm'])
+
+
+# #### Automatically calculates the averages of SepalLength and SepalWidth
+
+# #### Using aggregrate fuctions
+
+# In[78]:
+
+
+pd.pivot_table(iris1, index=['Species'], values=['SepalLengthCm','SepalWidthCm'],aggfunc=np.sum)
+
+
+# #### aggfunc can take a list of fuctions. Using the numpy mean fuction and len to get a count in aggfuc
+
+# In[79]:
+
+
+pd.pivot_table(iris1, index=['Species'], values=['SepalLengthCm','SepalWidthCm'],aggfunc=[np.mean,len])
+
+
+# In[80]:
+
+
+pd.pivot_table(iris1, index=['Species'], 
+               values=['SepalLengthCm','SepalWidthCm'], columns=['PetalLengthCm'],aggfunc=np.sum)
+
+
+# #### Using fill_value to set a value of 0 to NaN's
+
+# In[81]:
+
+
+pd.pivot_table(iris1, index=['Species'], 
+               values=['SepalLengthCm','SepalWidthCm'], 
+               columns=['PetalLengthCm'],aggfunc=np.sum, fill_value=0)
+
+
+# #### Adding Sepal Width to the index list
+
+# In[82]:
+
+
+pd.pivot_table(iris1, index=['Species','SepalLengthCm','SepalWidthCm','PetalWidthCm'], 
+               values=['PetalLengthCm'], 
+               aggfunc=[np.sum], fill_value=0)
+
+
+# #### Setting margins=True to see some totals
+
+# In[87]:
+
+
+pd.pivot_table(iris1, index=['Species','SepalLengthCm','SepalWidthCm','PetalWidthCm'], 
+               values=['PetalLengthCm'], 
+               aggfunc=[np.sum, np.mean], fill_value=0, margins=True)
 
